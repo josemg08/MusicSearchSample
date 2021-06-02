@@ -43,9 +43,11 @@ class CustomAdapter(private val dataSet: List<TrackDto>, private val trackAdapte
         textViewName.text = dataSet[listPosition].trackName
         textViewVersion.text = dataSet[listPosition].artistName
         if (dataSet[listPosition].artworkUrl100 != null && !dataSet[listPosition].artworkUrl100?.isEmpty()!!) {
-            Glide.with(context)
-                    .load(dataSet[listPosition].artworkUrl100)
-                    .into(imageView)
+            context?.let {
+                Glide.with(it)
+                        .load(dataSet[listPosition].artworkUrl100)
+                        .into(imageView)
+            }
         }
     }
 

@@ -19,11 +19,17 @@ class ItemListPresenter(private val itemListView: ItemListView) {
         client.getListOfSongsWithNumberOfElements(word, 20)?.enqueue(object : Callback<TrackListDto?> {
             override fun onResponse(call: Call<TrackListDto?>, response: Response<TrackListDto?>) {
                 listDto = response.body()
-                if (listDto!!.resultCount == 0) {
-                    itemListView.onError()
-                } else {
-                    itemList = listDto!!.results
-                    itemListView.addTrackList(listDto)
+                when {
+                    listDto == null -> {
+                        itemListView.onError()
+                    }
+                    listDto!!.resultCount == 0 -> {
+                        itemListView.onError()
+                    }
+                    else -> {
+                        itemList = listDto!!.results
+                        itemListView.addTrackList(listDto)
+                    }
                 }
             }
 

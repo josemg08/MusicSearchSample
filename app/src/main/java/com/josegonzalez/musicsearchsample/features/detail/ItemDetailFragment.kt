@@ -1,6 +1,5 @@
 package com.josegonzalez.musicsearchsample.features.detail
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,14 +23,14 @@ class ItemDetailFragment : Fragment() {
     }
 
     private fun init() {
-        if (arguments!!.containsKey(ItemDetailActivity.ARTIST_KEY)) {
-            artist = arguments!!.getString(ItemDetailActivity.ARTIST_KEY)
-            val activity: Activity? = this.activity
-            val appBarLayout: CollapsingToolbarLayout = activity!!.findViewById(R.id.toolbar_layout)
+        if (requireArguments().containsKey(ItemDetailActivity.ARTIST_KEY)) {
+            artist = requireArguments().getString(ItemDetailActivity.ARTIST_KEY)
+            this.activity
+            val appBarLayout: CollapsingToolbarLayout = requireActivity().findViewById(R.id.toolbar_layout)
             appBarLayout.title = artist
         }
-        track = arguments!!.getString(ItemDetailActivity.TRACK_KEY)
-        imageUrl = arguments!!.getString(ItemDetailActivity.IMAGE_KEY)
+        track = requireArguments().getString(ItemDetailActivity.TRACK_KEY)
+        imageUrl = requireArguments().getString(ItemDetailActivity.IMAGE_KEY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,9 +43,11 @@ class ItemDetailFragment : Fragment() {
             (rootView.findViewById<View>(R.id.track_name) as TextView).text = track
         }
         if (imageUrl != null && imageUrl!!.isNotEmpty()) {
-            Glide.with(context)
-                    .load(imageUrl)
-                    .into(imageView)
+            context?.let {
+                Glide.with(it)
+                        .load(imageUrl)
+                        .into(imageView)
+            }
         }
         return rootView
     }
