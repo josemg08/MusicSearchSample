@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicSearchSample">
         <activity
-            android:name=".view.search.SearchActivity"
+            android:name=".features.search.SearchActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MusicSearchSample.NoActionBar">
             <intent-filter>
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.itemList.ItemListActivity"
+            android:name=".features.list.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MusicSearchSample.NoActionBar">
             <intent-filter>
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.itemDetails.ItemDetailActivity"
+            android:name=".features.detail.ItemDetailActivity"
             android:label="@string/title_item_detail"
             android:theme="@style/Theme.MusicSearchSample.NoActionBar">
             <intent-filter>
